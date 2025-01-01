@@ -1,9 +1,15 @@
 "use client"
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts'
+import { SocialData, FilterType } from "@/app/dashboard/page"
+
+interface ChartData {
+  name: string
+  value: number
+}
 
 interface PieChartProps {
-  data: any[]
-  filterBy: string
+  data: SocialData[]
+  filterBy: FilterType
 }
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8']
@@ -13,10 +19,10 @@ export function PieChartComponent({ data, filterBy }: PieChartProps) {
     return <div>No data available</div>
   }
 
-  const chartData = data.reduce((acc: any[], curr) => {
+  const chartData = data.reduce((acc: ChartData[], curr) => {
     if (!curr || !curr[filterBy]) return acc
     
-    const key = curr[filterBy]
+    const key = String(curr[filterBy as keyof SocialData])
     const existing = acc.find(item => item.name === key)
     
     if (existing) {

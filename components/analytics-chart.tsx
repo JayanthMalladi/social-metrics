@@ -1,14 +1,21 @@
 "use client"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts'
+import { SocialData, FilterType } from "@/app/dashboard/page"
+
+interface ChartData {
+  group: string
+  engagement_rate: number
+  count: number
+}
 
 interface ChartProps {
-  data: any[]
-  filterBy: string
+  data: SocialData[]
+  filterBy: FilterType
 }
 
 export function AnalyticsChart({ data, filterBy }: ChartProps) {
-  const chartData = data.reduce((acc: any[], curr) => {
-    const key = curr[filterBy]
+  const chartData = data.reduce((acc: ChartData[], curr) => {
+    const key = String(curr[filterBy as keyof SocialData])
     const existingGroup = acc.find(item => item.group === key)
     
     if (existingGroup) {

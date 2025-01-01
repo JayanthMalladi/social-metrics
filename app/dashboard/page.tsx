@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { PieChartComponent } from "@/components/pie-chart"
 
-interface SocialData {
+export interface SocialData {
   post_id: string
   post_type: string
   likes: number
@@ -21,7 +21,7 @@ interface SocialData {
   primary_age_group: string
 }
 
-type FilterType = 'post_type' | 'post_day' | 'post_theme' | 'primary_age_group'
+export type FilterType = keyof SocialData
 
 export default function Dashboard() {
   const [data, setData] = useState<SocialData[]>([])
