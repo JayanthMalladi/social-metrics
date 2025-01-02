@@ -83,23 +83,27 @@ export default function Dashboard() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-zinc-900">
       <NavBar />
       <main className="container mx-auto px-6 py-8">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold">Hi User! 👋</h1>
+          <h1 className="text-4xl font-bold text-white">Welcome to SnapFluence</h1>
           <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground">Analyze by:</span>
+            <span className="text-sm text-gray-400">Analyze by:</span>
             <Select
               value={filterBy}
               onValueChange={(value) => setFilterBy(value as FilterType)}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-[180px] bg-zinc-800 border-zinc-700 text-white">
                 <SelectValue placeholder="Select filter" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-zinc-800 border-zinc-700">
                 {filterOptions.map(option => (
-                  <SelectItem key={option.value} value={option.value}>
+                  <SelectItem 
+                    key={option.value} 
+                    value={option.value}
+                    className="text-white hover:bg-zinc-700"
+                  >
                     {option.label}
                   </SelectItem>
                 ))}
@@ -109,50 +113,54 @@ export default function Dashboard() {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <Card>
+          <Card className="bg-zinc-800 border-zinc-700">
             <CardHeader>
-              <CardTitle>Total Engagement</CardTitle>
+              <CardTitle className="text-white">Total Engagement</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{totalEngagement.toLocaleString()}</div>
-              <p className="text-muted-foreground">Likes + Shares + Comments</p>
+              <div className="text-3xl font-bold text-white">{totalEngagement.toLocaleString()}</div>
+              <p className="text-gray-400">Likes + Shares + Comments</p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-zinc-800 border-zinc-700">
             <CardHeader>
-              <CardTitle>Avg. Engagement Rate</CardTitle>
+              <CardTitle className="text-white">Avg. Engagement Rate</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{(avgEngagementRate * 100).toFixed(2)}%</div>
-              <p className="text-muted-foreground">Across all platforms</p>
+              <div className="text-3xl font-bold text-white">{(avgEngagementRate * 100).toFixed(2)}%</div>
+              <p className="text-gray-400">Across all platforms</p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-zinc-800 border-zinc-700">
             <CardHeader>
-              <CardTitle>Top Platform</CardTitle>
+              <CardTitle className="text-white">Top Platform</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">Instagram</div>
-              <p className="text-muted-foreground">Highest engagement rate</p>
+              <div className="text-3xl font-bold text-white">Instagram</div>
+              <p className="text-gray-400">Highest engagement rate</p>
             </CardContent>
           </Card>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card>
+          <Card className="bg-zinc-800 border-zinc-700">
             <CardHeader>
-              <CardTitle>Engagement by {filterOptions.find(f => f.value === filterBy)?.label}</CardTitle>
+              <CardTitle className="text-white">
+                Engagement by {filterOptions.find(f => f.value === filterBy)?.label}
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <AnalyticsChart data={data} filterBy={filterBy} />
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-zinc-800 border-zinc-700">
             <CardHeader>
-              <CardTitle>Distribution by {filterOptions.find(f => f.value === filterBy)?.label}</CardTitle>
+              <CardTitle className="text-white">
+                Distribution by {filterOptions.find(f => f.value === filterBy)?.label}
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <PieChartComponent data={data} filterBy={filterBy} />

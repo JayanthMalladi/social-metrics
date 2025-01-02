@@ -17,14 +17,16 @@ export default function Home() {
             Make data-driven decisions and grow your online presence.
           </p>
           <div className="flex gap-4 justify-center mb-12">
-            <Link href="/dashboard">
+            <Link href="/coming-soon">
               <Button size="lg" className="bg-white text-black hover:bg-gray-200">
                 Get Started
               </Button>
             </Link>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-black">
-              View Demo
-            </Button>
+            <Link href="/dashboard">
+              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-black">
+                View Demo
+              </Button>
+            </Link>
           </div>
 
           {/* Stats */}
